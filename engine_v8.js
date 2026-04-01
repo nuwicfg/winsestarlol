@@ -468,9 +468,11 @@ function getBadgesHtml(badges) {
     return badges.map(b => {
         const bdg = badgeMap[b];
         if (!bdg) return '';
-        if (bdg.img) return `<img src="${bdg.img}" class="static-badge-img" style="width:16px; height:16px;" data-tooltip="${bdg.tip}">`;
-        return `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 11px;" data-tooltip="${bdg.tip}"></i>`;
-    }).join(' ');
+        const content = bdg.img 
+            ? `<img src="${bdg.img}" style="width:16px; height:16px;">`
+            : `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 11px;"></i>`;
+        return `<div class="badge-item static-badge" data-tooltip="${bdg.tip}">${content}</div>`;
+    }).join('');
 }
 
 // Real Discord badges from public_flags bitmask (Lanyard API)
@@ -775,12 +777,11 @@ function applyBadges(badges) {
     const wrap = document.getElementById('badgeContainer');
     if (!wrap) return;
     
-    // Clear static ones
-    const staticItems = wrap.querySelectorAll('.static-badge-img, .static-badge-icon');
+    // Clear old static items
+    const staticItems = wrap.querySelectorAll('.badge-item.static-badge');
     staticItems.forEach(b => b.remove());
 
     if (!badges || badges.length === 0) {
-        // Only hide if nothing left
         if (wrap.innerHTML.trim() === '') wrap.classList.add('hidden');
         return;
     }
