@@ -469,8 +469,11 @@ function getBadgesHtml(badges) {
         const bdg = badgeMap[b];
         if (!bdg) return '';
         const content = bdg.img 
-            ? `<img src="${bdg.img}" style="width:16px; height:16px;">`
-            : `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 11px;"></i>`;
+            ? `<img src="${bdg.img}" style="width:18px; height:18px;">`
+            : `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 14px;"></i>`;
+        
+        if (!content) return ''; // Double safety
+
         return `<div class="badge-item static-badge" data-tooltip="${bdg.tip}">${content}</div>`;
     }).join('');
 }
@@ -554,8 +557,8 @@ function renderTelemetry(data) {
         const statusEl = document.getElementById('discordStatus');
         if (statusEl) statusEl.style.background = sMeta.color;
 
-        // Render real Discord badges from public_flags
-        renderRealDiscordBadges(u);
+        // Force disable dynamic lanyard badges to prevent empty/duplicate boxes
+        // renderRealDiscordBadges(u); 
         
         // Render Discord Banner
         if (u.banner) {
