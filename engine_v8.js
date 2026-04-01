@@ -75,8 +75,8 @@ const DEF_EFFECTS = {
 };
 const DEF_MEDIA = {
     bgMode: 'stars', videoUrl: '', cursorUrl: '', audioUrl: '',
-    avatarOverride: '', atomSpeed: 2.2, atomDensity: 400,
-    atomColor: '#facc15', atomShape: 'circle', bannerUrl: ''
+    avatarOverride: '', atomSpeed: 2.2, atomDensity: 600,
+    atomColor: '#facc15', atomShape: 'star', bannerUrl: ''
 };
 const DEF_DISCORD = {
     sync: true, customStatus: 'Sovereign Protocol', guildName: 'SVRGN Empire',
