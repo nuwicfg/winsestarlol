@@ -508,7 +508,7 @@ function renderRealDiscordBadges(discordUser) {
     // Legacy Username Badge (Check for discriminator '0')
     if (discordUser.discriminator === '0' || discordUser.discriminator === '#0' || (discordUser.global_name && !discordUser.discriminator)) {
          html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Legacy Username">
-            <img src="https://cdn.discordapp.com/badge-icons/6de6d3465076052744769ad033230eed.png" style="width:16px; height:16px;">
+            <img src="https://raw.githubusercontent.com/yofreke/discord-badges/main/badges/legacy_username.png" style="width:18px; height:18px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));">
         </div>`;
     }
     
