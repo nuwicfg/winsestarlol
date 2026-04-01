@@ -62,24 +62,24 @@ const safeSave = (k, v) => {
 };
 
 const DEF_COLORS = {
-    name: ['#7d3cff', '#a855f7'],
-    border: ['#ffffff', '#7d3cff'],
-    cardGlow: ['#7d3cff', '#a855f7'],
-    borderGlow: ['#7d3cff', '#a855f7'],
-    bgGlow: ['#000000', '#0a0a0a'],
-    icons: ['#ffffff', '#ffffff'],
+    name: ['#facc15', '#f59e0b'],
+    border: ['#facc15', '#27272a'],
+    cardGlow: ['#000000', '#0a0a0a'],
+    borderGlow: ['#facc15', '#000000'],
+    bgGlow: ['#000000', '#050505'],
+    icons: ['#ffffff', '#9ca3af'],
     avatarBg: '#000000',
-    avatarGlow: '#7d3cff'
+    avatarGlow: '#facc15'
 };
 const DEF_EFFECTS = {
-    glitchName: false, rainbowName: false, floatCard: true,
+    glitchName: true, rainbowName: false, floatCard: true,
     glowCard: true, tiltEnabled: true, textShadow: true,
     cardEntrance: true, bgGlowPulse: true
 };
 const DEF_MEDIA = {
-    bgMode: 'original', videoUrl: '', cursorUrl: '', audioUrl: '',
-    avatarOverride: '', atomSpeed: 2, atomDensity: 150,
-    atomColor: '#ffffff', atomShape: 'circle'
+    bgMode: 'stars', videoUrl: '', cursorUrl: '', audioUrl: '',
+    avatarOverride: '', atomSpeed: 1.5, atomDensity: 180,
+    atomColor: '#facc15', atomShape: 'circle'
 };
 const DEF_DISCORD = {
     sync: true, customStatus: 'Sovereign Protocol', guildName: 'SVRGN Empire',
@@ -93,7 +93,7 @@ const DEF_LINKS = {
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
-    badges: ['verified', 'premium'],
+    badges: ['verified', 'developer', 'premium'],
     typewriter: true,
     viewCounter: true
 };
@@ -116,11 +116,11 @@ function deepMerge(def, user) {
 function loadState() {
     return {
         discordId: safeGet('discordId', '1158363483256147978') || '1158363483256147978',
-        siteTitle: safeGet('siteTitle', 'winse | infinity') || 'winse | infinity',
-        bio: safeGet('bio', '// stay high...') || '// stay high...',
-        splashTitle: safeGet('splashTitle', 'winse | SOVEREIGN') || 'winse | SOVEREIGN',
+        siteTitle: safeGet('siteTitle', 'winse | SOVEREIGN') || 'winse | SOVEREIGN',
+        bio: safeGet('bio', '// initializing imperial protocol...') || '// initializing imperial protocol...',
+        splashTitle: safeGet('splashTitle', 'S O V E R E I G N') || 'S O V E R E I G N',
         splashStatusText: safeGet('statusText', '// TERMINAL INITIALIZING...') || '// TERMINAL INITIALIZING...',
-        splashBtnText: safeGet('splashBtnText', 'İMPARATORLUĞA GİR') || 'İMPARATORLUĞA GİR',
+        splashBtnText: safeGet('splashBtnText', 'ENTER SYSTEM') || 'ENTER SYSTEM',
         colors: deepMerge(DEF_COLORS, safeGet('colors', DEF_COLORS)),
         effects: deepMerge(DEF_EFFECTS, safeGet('effects', DEF_EFFECTS)),
         media: deepMerge(DEF_MEDIA, safeGet('media', DEF_MEDIA)),
