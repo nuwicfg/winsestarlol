@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!-- 
+    ==========================================================================
+    INFINITY DASHBOARD "SOVEREIGN v7.0 THE EMPEROR" (CONTROL)
+    THE SUPREME INTERFACE FOR THE ELITE
+    ==========================================================================
+-->
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Force trailing slash for relative asset resolution
+        if (window.location.pathname.endsWith('/panel')) {
+            window.location.href = window.location.pathname + '/';
+        }
+    </script>
+    <title>winse | ADMIN v7.5</title>
+    <link rel="stylesheet" href="style.css?v=3.4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="admin-body">
+
+    <aside class="sidebar-v7">
+        <div class="sidebar-header">
+            <div class="sidebar-logo"><i class="fa-solid fa-crown pulse"></i></div>
+            <div class="sidebar-brand">
+                <h1>WİNSE</h1>
+                <p id="systemVersion">v7.5.0 EMPEROR</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav custom-scrollbar">
+            <div class="nav-section-label">ANA YÖNETİM</div>
+            <div class="nav-item active" data-tab="tab-preview" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-preview').classList.add('active');document.getElementById('activeTabName').textContent='Canlı Önizleme';">
+                <div class="nav-glow"></div><i class="fa-solid fa-eye"></i><span>Canlı Önizleme</span>
+            </div>
+            <div class="nav-item" data-tab="tab-kimlik" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-kimlik').classList.add('active');document.getElementById('activeTabName').textContent='Genel Kimlik';">
+                <i class="fa-solid fa-id-badge"></i><span>Genel Kimlik</span>
+            </div>
+            <div class="nav-item" data-tab="tab-landing" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-landing').classList.add('active');document.getElementById('activeTabName').textContent='Giriş Ekranı';">
+                <i class="fa-solid fa-door-open"></i><span>Giriş Ekranı</span>
+            </div>
+
+            <div class="nav-section-label">GÖRÜNÜM MATRİSİ</div>
+            <div class="nav-item" data-tab="tab-renk" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-renk').classList.add('active');document.getElementById('activeTabName').textContent='Renk & Işıma';">
+                <i class="fa-solid fa-palette"></i><span>Renk & Işıma</span>
+            </div>
+            <div class="nav-item" data-tab="tab-efekt" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-efekt').classList.add('active');document.getElementById('activeTabName').textContent='Gelişmiş Efektler';">
+                <i class="fa-solid fa-wand-magic-sparkles"></i><span>Gelişmiş Efektler</span>
+            </div>
+            <div class="nav-item" data-tab="tab-ozellikler" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-ozellikler').classList.add('active');document.getElementById('activeTabName').textContent='Rozetler & Özellikler';">
+                <i class="fa-solid fa-gem"></i><span>Rozetler & Modüller</span>
+            </div>
+
+            <div class="nav-section-label">MODÜLLER</div>
+            <div class="nav-item" data-tab="tab-medya" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-medya').classList.add('active');document.getElementById('activeTabName').textContent='Medya & Lab';">
+                <i class="fa-solid fa-photo-film"></i><span>Medya & Lab</span>
+            </div>
+            <div class="nav-item" data-tab="tab-discord" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-discord').classList.add('active');document.getElementById('activeTabName').textContent='Discord Pro-X';">
+                <i class="fa-brands fa-discord"></i><span>Discord Pro-X</span>
+            </div>
+            <div class="nav-item" data-tab="tab-sosyal" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-sosyal').classList.add('active');document.getElementById('activeTabName').textContent='Sosyal Matrix';">
+                <i class="fa-solid fa-share-nodes"></i><span>Sosyal Matrix</span>
+            </div>
+            <div class="nav-item" data-tab="tab-terminal" onclick="document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('tab-terminal').classList.add('active');document.getElementById('activeTabName').textContent='Sistem Logları';">
+                <i class="fa-solid fa-terminal"></i><span>Sistem Logları</span>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="location.href='../'"><i class="fa-solid fa-power-off"></i> SİSTEMDEN ÇIK</button>
+        </div>
+    </aside>
+
+    <main class="workspace-v7">
+        <header class="workspace-top">
+            <div class="breadcrumb"><span class="b-admin">X-VISION G9</span> <i class="fa-solid fa-chevron-right"></i>
+                <span id="activeTabName">Canlı Önizleme</span>
+            </div>
+            <div class="system-status">
+                <div class="status-dot green"></div><span>TELEMETRİ: KUSURSUZ</span>
+            </div>
+        </header>
+
+        <div class="content-viewport custom-scrollbar">
+
+            <!-- SECTION: PREVIEW -->
+            <section id="tab-preview" class="tab-pane active">
+                <div class="v7-card preview-card">
+                    <div class="preview-container-v7">
+                        <div class="preview-header"><span>REAL-TIME SIMULATION ENGINE</span></div>
+                        <iframe src="../index.html" id="previewIframe" class="v7-iframe"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: KİMLİK -->
+            <section id="tab-kimlik" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-id-card"></i>
+                        <h3>Genel Kimlik Matrisi</h3>
+                    </div>
+                    <div class="v7-form-grid">
+                        <div class="v7-input-group"><label>DİSCORD ID</label><input type="text" id="inputDiscordId"></div>
+                        <div class="v7-input-group"><label>SİTE BAŞLIĞI</label><input type="text" id="inputTitle"></div>
+                        <div class="v7-input-group full-width"><label>BİO (HTML DESTEKLİ)</label><textarea id="inputBio" rows="4"></textarea></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION: GİRİŞ EKRANI -->
+            <section id="tab-landing" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-door-open"></i>
+                        <h3>Giriş (Splash) Konfigürasyonu</h3>
+                    </div>
+                    <div class="v7-form-grid">
+                        <div class="v7-input-group"><label>ANA BAŞLIK</label><input type="text" id="splashTitle"></div>
+                        <div class="v7-input-group"><label>STATUS METNİ</label><input type="text" id="splashStatusText"></div>
+                        <div class="v7-input-group full-width"><label>GİRİŞ BUTON METNİ</label><input type="text" id="splashBtnText"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: RENK MATRİSİ -->
+            <section id="tab-renk" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-palette"></i>
+                        <h3>Renk & Işıma (Glow) Matrisi</h3>
+                    </div>
+                    <div class="renk-matrix-v7">
+                        <div class="renk-item"><label>İSİM GRADYAN</label>
+                            <div class="dual-picker"><input type="color" id="nameColor1"><input type="color" id="nameColor2"></div>
+                        </div>
+                        <div class="renk-item"><label>İSİM PARLAMA (NAME GLOW)</label>
+                            <div class="dual-picker"><input type="color" id="nameGlow1"><input type="color" id="nameGlow2"></div>
+                        </div>
+                        <div class="renk-item"><label>KENARLIK GRADYAN</label>
+                            <div class="dual-picker"><input type="color" id="borderColor1"><input type="color" id="borderColor2"></div>
+                        </div>
+                        <div class="renk-item"><label>KART ARKA GLOW</label>
+                            <div class="dual-picker"><input type="color" id="cardGlow1"><input type="color" id="cardGlow2"></div>
+                        </div>
+                        <div class="renk-item"><label>KENARLIK GLOW (BİRİNCİL)</label>
+                            <div class="dual-picker"><input type="color" id="borderGlow1"><input type="color" id="borderGlow2"></div>
+                        </div>
+                        <div class="renk-item"><label>ATMOSFERİK GLOW</label>
+                            <div class="dual-picker"><input type="color" id="bgGlow1"><input type="color" id="bgGlow2"></div>
+                        </div>
+                        <div class="renk-item"><label>İKON RENKLERİ</label>
+                            <div class="dual-picker"><input type="color" id="iconColor1"><input type="color" id="iconColor2"></div>
+                        </div>
+                        <div class="renk-item"><label>AVATAR ARKAPLAN RENGİ</label>
+                            <div class="dual-picker"><input type="color" id="avatarBgColor" title="Avatar arka plan rengi"></div>
+                        </div>
+                        <div class="renk-item"><label>AVATAR PARLAMA (GLOW) RENGİ</label>
+                            <div class="dual-picker"><input type="color" id="avatarGlowColor" title="Avatar etrafındaki parıltı rengi"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: EFEKTLER -->
+            <section id="tab-efekt" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <h3>Gelişmiş Görsel Efektler</h3>
+                    </div>
+                    <div class="efekt-grid-v7">
+                        <label class="v7-toggle"><input type="checkbox" id="checkGlitchName"><span>Glitch Efekti</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkRainbowName"><span>Gökkuşağı İsmi</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkFloatCard"><span>Yüzen Kart (Floating)</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkGlowCard"><span>Dinamik Işıma (Glow)</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkTiltEnabled"><span>3D Kart Eğimi (Tilt)</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkTextShadow"><span>Yazı Gölgeleri</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkCardEntrance"><span>Giriş Animasyonu</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkBgGlowPulse"><span>Atmosferik Pulsar</span><div class="t-slider"></div></label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: ÖZELLİKLER & ROZETLER -->
+            <section id="tab-ozellikler" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-gem"></i>
+                        <h3>Guns.lol Premium Özellikleri</h3>
+                    </div>
+                    <div class="efekt-grid-v7">
+                        <label class="v7-toggle"><input type="checkbox" id="checkTypewriter"><span>Daktilo (Typewriter) Bio</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkViewCounter"><span>Ziyaretçi Sayacı</span><div class="t-slider"></div></label>
+                    </div>
+                    
+                    <div class="separator-v7" style="margin:2rem 0 1rem; color:var(--text-mid); font-size:0.8rem; letter-spacing:2px; font-weight:800;">PROFİL ROZETLERİ</div>
+                    
+                    <div class="efekt-grid-v7">
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="verified"><span><i class="fa-solid fa-check-circle" style="color:var(--accent-primary);"></i> Doğrulanmış Hesap</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="premium"><span><i class="fa-solid fa-gem" style="color:#f59e0b;"></i> Premium Üye</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="developer"><span><i class="fa-solid fa-code" style="color:#3b82f6;"></i> Sistem Geliştiricisi</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="supporter"><span><i class="fa-solid fa-heart" style="color:#ef4444;"></i> Erken Destekçi</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="bot"><span><i class="fa-solid fa-robot" style="color:#8b5cf6;"></i> Otonom Ajan</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" class="badge-check" value="staff"><span><i class="fa-solid fa-shield-halved" style="color:#10b981;"></i> Yetkili (Staff)</span><div class="t-slider"></div></label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: MEDYA LAB -->
+            <section id="tab-medya" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-photo-film"></i>
+                        <h3>Medya & Arka Plan Laboratuvarı</h3>
+                    </div>
+                    <div class="v7-form-grid">
+                        <div class="v7-input-group"><label>ARKA PLAN MODU</label>
+                            <select id="bgMode" class="v7-select">
+                                <option value="original">ORİJİNAL ATOM (PARTICLES)</option>
+                                <option value="video">VİDEO BACKGROUND (MP4/YT)</option>
+                                <option value="matrix">MATRİX KOD (DİGİTAL RAİN)</option>
+                                <option value="snow">KAR YAĞIŞI EFEKTİ</option>
+                                <option value="stars">YILDIZ DERYASI (SHOOTING STARS)</option>
+                                <option value="fireflies">ATEŞ BÖCEKLERİ (FIREFLIES)</option>
+                                <option value="vaporwave">RETRO DALGA (VAPORWAVE)</option>
+                                <option value="solid">SOLID VOID</option>
+                            </select>
+                        </div>
+                        <div class="v7-input-group"><label>VİDEO URL (YT/DİREKT)</label><input type="text" id="videoUrl"></div>
+                        <div class="v7-input-group"><label>ÖZEL AFİŞ / BANNER URL</label><input type="text" id="bannerUrl" placeholder="https://site.com/afis.jpg"></div>
+                        <div class="v7-input-group"><label>ÖZEL CURSOR URL (.CUR/.PNG)</label><input type="text" id="cursorUrl"></div>
+                        <div class="v7-input-group"><label>SES/MÜZİK URL (MP3)</label><input type="text" id="audioUrl"></div>
+                        <div class="v7-input-group full-width"><label>AVATAR OVERRIDE (LANYARD ÖNCELİKLİ)</label><input type="text" id="avatarOverride"></div>
+                        
+                        <div class="v7-input-group full-width separator-v7"><span>ATOM (PARTICLES) KONTROLÜ</span></div>
+                        
+                        <div class="v7-input-group"><label>ATOM HIZI</label><input type="range" id="atomSpeed" min="0.1" max="10" step="0.1"></div>
+                        <div class="v7-input-group"><label>ATOM YOĞUNLUĞU</label><input type="range" id="atomDensity" min="10" max="500" step="10"></div>
+                        <div class="v7-input-group"><label>ATOM RENGİ</label><input type="color" id="atomColor"></div>
+                        <div class="v7-input-group"><label>ATOM ŞEKLİ</label>
+                            <select id="atomShape" class="v7-select">
+                                <option value="circle">DAİRE</option>
+                                <option value="edge">KARE</option>
+                                <option value="triangle">ÜÇGEN</option>
+                                <option value="star">YILDIZ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: DISCORD PRO -->
+            <section id="tab-discord" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-brands fa-discord"></i>
+                        <h3>Discord Telemetri & Pro-X</h3>
+                    </div>
+                    <div class="v7-form-grid">
+                        <label class="v7-toggle full-width"><input type="checkbox" id="discordSync" checked><span>LANYARD REAL-TIME SYNC</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="showSpotify"><span>Spotify Göster</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="showActivities"><span>Aktiviteleri Göster</span><div class="t-slider"></div></label>
+
+                        
+                        <div class="v7-input-group full-width separator-v7"><span>DİSCORD PREFERENCES (KART ÜZERİ)</span></div>
+                        
+                        <label class="v7-toggle"><input type="checkbox" id="checkShowStatus"><span>Durum Widget'ı Göster</span><div class="t-slider"></div></label>
+                        <label class="v7-toggle"><input type="checkbox" id="checkShowJoined"><span>Katılım Tarihi Göster</span><div class="t-slider"></div></label>
+                        
+                        <div class="v7-input-group full-width"><label>KATILIM TARİHİ (SINCE TEXT)</label><input type="text" id="discordSince" placeholder="Since 2021"></div>
+                        <div class="v7-input-group full-width"><label>CUSTOM RPC (DETAYLAR)</label><textarea id="customRpc" rows="3"></textarea></div>
+
+                        <div class="v7-input-group full-width separator-v7"><span><i class="fa-brands fa-discord"></i> SUNUCU (GUILD) WIDGET</span></div>
+                        <div class="v7-input-group full-width"><label>SUNUCU ADI</label><input type="text" id="guildName" placeholder="Sunucu adın..."></div>
+                        <div class="v7-input-group full-width"><label>SUNUCU İKON URL (isteğe bağlı)</label><input type="text" id="guildIcon" placeholder="https://cdn.discordapp.com/icons/..."></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: SOSYAL -->
+            <section id="tab-sosyal" class="tab-pane">
+                <div class="v7-card glass-luxe">
+                    <div class="v7-card-header"><i class="fa-solid fa-share-nodes"></i>
+                        <h3>Sosyal Matrix v7</h3>
+                    </div>
+                    <div class="social-matrix-grid">
+                        <div class="v7-input-group"><label><i class="fa-brands fa-discord"></i> DISCORD</label><input type="text" id="linkDiscord"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-github"></i> GITHUB</label><input type="text" id="linkGithub"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-spotify"></i> SPOTIFY</label><input type="text" id="linkSpotify"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-tiktok"></i> TIKTOK</label><input type="text" id="linkTiktok"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-instagram"></i> INSTAGRAM</label><input type="text" id="linkInstagram"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-x-twitter"></i> X / TWITTER</label><input type="text" id="linkTwitter"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-youtube"></i> YOUTUBE</label><input type="text" id="linkYoutube"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-steam"></i> STEAM</label><input type="text" id="linkSteam"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-telegram"></i> TELEGRAM</label><input type="text" id="linkTelegram"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-snapchat"></i> SNAPCHAT</label><input type="text" id="linkSnapchat"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-soundcloud"></i> SOUNDCLOUD</label><input type="text" id="linkSoundcloud"></div>
+                        <div class="v7-input-group"><label><i class="fa-brands fa-reddit-alien"></i> REDDIT</label><input type="text" id="linkReddit"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: TERMİNAL -->
+            <section id="tab-terminal" class="tab-pane">
+                <div class="v7-terminal">
+                    <div class="term-header"><span>SİSTEM TERMİNALİ</span></div>
+                    <div id="v5-terminal-output" class="term-body custom-scrollbar"></div>
+                </div>
+            </section>
+
+        </div>
+
+        <button id="saveBtn" class="v7-save-btn"><i class="fa-solid fa-shield-halved"></i><span>KAYDET</span></button>
+    </main>
+
+    <script src="panel.js?v=3.4"></script>
+</body>
+
+</html>

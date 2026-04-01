@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- 
+    ==========================================================================
+    INFINITY PROFILE "SOVEREIGN v4.0.1 RESURRECTION" (CINEMATIC)
+    THE DEFINITIVE AESTHETIC EXPERIENCE
+    ==========================================================================
+    @author: winse / Antigravity
+    ==========================================================================
+-->
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Redirect winsestar.lol/panel to panel/ if necessary (SPA Fallback)
+        if (window.location.pathname === '/panel') {
+            window.location.href = '/panel/';
+        }
+    </script>
+    <title>winse | infinity</title>
+    <link rel="stylesheet" href="style.css?v=4.0.5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="sovereign-master">
+
+    <!-- VIDEO BACKGROUND LAYER (v7.0) -->
+    <div id="videoLayer" class="video-bg-v7 hidden">
+        <div id="ytPlayer"></div> <!-- YouTube target -->
+        <video id="nativeVideo" loop muted playsinline></video>
+    </div>
+
+    <!-- GALACTIC BG ENGINE (ATOM, MATRIX, SNOW) -->
+    <canvas id="bgCanvas" class="bg-v7 hidden"></canvas>
+    <div id="particles-js" class="bg-v7"></div>
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
+    <div class="glow-matrix"></div>
+
+    <!-- ULTIMATE SPLASH (v7.0) -->
+    <div id="splashLayer" class="splash-overlay-v7">
+        <div class="splash-hud-top">
+            <span class="hud-tag">winse | X-VISION</span>
+            <div class="hud-line"></div>
+        </div>
+
+        <div class="splash-core-v7">
+            <div class="avatar-portal-v7">
+                <!-- Multi-layered Rotating Borders -->
+                <div class="portal-ring outer"></div>
+                <div class="portal-ring inner"></div>
+                <div class="portal-glow"></div>
+                <!-- Actual Avatar -->
+                <img src="https://cdn.discordapp.com/avatars/1158363483256147978/f96dc591a440e63a683cfd5f128602a6.png?size=512"
+                    id="splashAvatar" class="avatar-v7-img">
+            </div>
+
+            <div class="splash-info-v7">
+                <h1 class="glitch-text" id="splashMainText">winse | star</h1>
+                <p id="splashStatusText">// winsestar</p>
+            </div>
+
+            <button id="enterBtn" class="emperor-btn-v7"
+                onclick="document.getElementById('splashLayer').classList.add('splash-exited'); document.getElementById('mainUI').classList.add('main-visible');">
+                <span>CLİCK</span>
+                <i class="fa-solid fa-angles-right"></i>
+            </button>
+        </div>
+
+        <span class="hud-meta">winse</span>
+    </div>
+
+    <!-- MAIN PROFILE INTERFACE -->
+    <div id="mainUI" class="main-container-v7">
+        <div class="tilt-wrapper" id="cardTilt"
+            style="width: 100%; max-width: 560px; display: flex; align-items: center; justify-content: center;">
+            <div class="profile-card-v7 gradient-border" id="mainCard">
+
+                <!-- CARD HEADER -->
+                <header class="card-header-v7">
+                    <div class="banner-area-v7" id="cardBanner"></div>
+                    <div class="avatar-wrap-v7">
+                        <img src="https://cdn.discordapp.com/avatars/1158363483256147978/f96dc591a440e63a683cfd5f128602a6.png?size=512"
+                            id="profileAvatar" class="profile-img-v7">
+                        <div class="status-indicator-v7" id="discordStatus"></div>
+                    </div>
+                </header>
+
+                <div class="card-body-v7">
+                    <!-- NAME MATRIX -->
+                    <div class="name-matrix-v7">
+                        <h2 id="profileName" class="gradient-text name-pulse" data-text="'Jr Mr">'Jr Mr</h2>
+                        <span id="profileUsername">@winsestar</span>
+                        <div id="badgeContainer" class="badges-v7 hidden">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+
+                    <div class="bio-area-v7">
+                        <p id="profileBio">// stay high...</p>
+                    </div>
+
+                    <!-- DISCORD REAL BADGES (from Lanyard public_flags) -->
+                    <div id="discordBadgesRow" class="discord-badges-row hidden"></div>
+
+                    <!-- DISCORD GUILD WIDGET -->
+                    <div id="guildWidget" class="guild-widget hidden"></div>
+
+                    <!-- DISCORD PRO-X TELEMETRY (DYNAMIC) -->
+                    <div id="presenceRoot" class="presence-container-v7 hidden">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <!-- DISCORD PREFERENCES & STATS (V8.0 REVISION) -->
+                    <div id="discordPrefs" class="discord-prefs-v8">
+                        <div class="v8-pref-widget">
+                            <div class="pref-label"><i class="fa-solid fa-satellite-dish"></i> INITIALIZING...</div>
+                            <div class="pref-val">Connecting to Sovereign Lanyard Engine...</div>
+                        </div>
+                    </div>
+
+                    <!-- SOCIAL MATRIX -->
+                    <div class="social-grid-v7" id="socialLinks">
+                        <!-- Dynamic Icons -->
+                    </div>
+
+                    <!-- VIEWS COUNTER -->
+                    <div id="viewCounter" class="view-counter-v7 hidden">
+                        <i class="fa-solid fa-eye"></i> <span id="viewCountVal">1337</span> görüntülenme
+                    </div>
+                </div>
+
+                <footer class="card-footer-v7">
+                    <div class="footer-hud">
+                        <span class="f-tag">X-VISION G9 AKTİF</span>
+                        <span class="f-code" id="profileVersion">v.7.0.0-SOVEREIGN</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO LAYER -->
+    <audio id="ambientSfx" loop></audio>
+
+    <!-- SCRIPT ENGINES -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js?v=4.0.5"></script>
+</body>
+
+</html>
