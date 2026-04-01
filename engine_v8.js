@@ -85,8 +85,8 @@ const DEF_DISCORD = {
     discordSince: 'Since 2021', showStatusWidget: true, showJoinedWidget: true
 };
 const DEF_LINKS = {
-    discord: '', github: '', spotify: '', tiktok: '',
-    instagram: '', twitter: '', youtube: '', steam: '',
+    discord: 'https://discordapp.com/users/1158363483256147978', github: '', spotify: 'https://open.spotify.com/user/315xjzu4csnzw2id5g7kmzatxazu?si=bd2e7e3722c849b8', tiktok: 'https://www.tiktok.com/@winsevlr',
+    instagram: 'https://www.instagram.com/winsevlr/', twitter: '', youtube: '', steam: 'https://steamcommunity.com/id/winsestar/',
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
@@ -110,34 +110,19 @@ function deepMerge(def, user) {
     return res;
 }
 
-let rawState = {
-    discordId: safeGet('discordId', config.discordId) || config.discordId,
-    siteTitle: safeGet('siteTitle', 'winse | SOVEREIGN') || 'winse | SOVEREIGN',
-    bio: safeGet('bio', '// initializing imperial protocol...') || '// initializing imperial protocol...',
-    splashTitle: safeGet('splashTitle', 'W I N S E') || 'W I N S E',
-    splashStatusText: safeGet('statusText', '// TERMINAL INITIALIZING...') || '// TERMINAL INITIALIZING...',
-    splashBtnText: safeGet('splashBtnText', 'ENTER SYSTEM') || 'ENTER SYSTEM',
-    colors: safeGet('colors', DEF_COLORS),
-    effects: safeGet('effects', DEF_EFFECTS),
-    media: safeGet('media', DEF_MEDIA),
-    discord: safeGet('discord', DEF_DISCORD),
-    links: safeGet('links', DEF_LINKS),
-    features: safeGet('features', DEF_FEATURES)
-};
-
 let sState = {
-    discordId: rawState.discordId,
-    siteTitle: rawState.siteTitle,
-    bio: rawState.bio,
-    splashTitle: rawState.splashTitle,
-    splashStatusText: rawState.splashStatusText,
-    splashBtnText: rawState.splashBtnText,
-    colors: deepMerge(DEF_COLORS, rawState.colors),
-    effects: deepMerge(DEF_EFFECTS, rawState.effects),
-    media: deepMerge(DEF_MEDIA, rawState.media),
-    discord: deepMerge(DEF_DISCORD, rawState.discord),
-    links: deepMerge(DEF_LINKS, rawState.links),
-    features: deepMerge(DEF_FEATURES, rawState.features)
+    discordId: config.discordId || '1158363483256147978',
+    siteTitle: 'winse | SOVEREIGN',
+    bio: '// initializing imperial protocol...',
+    splashTitle: 'W I N S E',
+    splashStatusText: '// TERMINAL INITIALIZING...',
+    splashBtnText: 'ENTER SYSTEM',
+    colors: Object.assign({}, DEF_COLORS),
+    effects: Object.assign({}, DEF_EFFECTS),
+    media: Object.assign({}, DEF_MEDIA),
+    discord: Object.assign({}, DEF_DISCORD),
+    links: Object.assign({}, DEF_LINKS),
+    features: Object.assign({}, DEF_FEATURES)
 };
 
 // Ensure sub-arrays are and names are valid
