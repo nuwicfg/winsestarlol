@@ -914,15 +914,20 @@ function startCanvasAnimation(mode, m) {
             ctx.fill();
         }
         function drawStars() {
-            ctx.fillStyle = "rgba(0,0,0,0.6)";
+            ctx.fillStyle = "rgba(0,0,0,0.6)"; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = m.atomColor || "#facc15";
             for (let i = 0; i < starCount; i++) {
                 let s = stars[i];
-                s.x -= speedX * 1.5;
-                if (s.x < -10) { s.x = canvas.width + 10; s.y = Math.random() * canvas.height; }
-                let r = (s.z / canvas.width) * 2 + 1;
-                drawStar(s.x, s.y, 5, r * 1.8, r);
+                s.z -= speedX * 2.5; 
+                if (s.z <= 0) { s.z = canvas.width; s.x = Math.random() * canvas.width; s.y = Math.random() * canvas.height; }
+                
+                // 3D Projection Logic
+                let px = (s.x - canvas.width / 2) * (canvas.width / s.z) + canvas.width / 2;
+                let py = (s.y - canvas.height / 2) * (canvas.width / s.z) + canvas.height / 2;
+                let r = (1 - s.z / canvas.width) * 4;
+                
+                drawStar(px, py, 5, r, r / 2);
             }
             canvasAnimId = requestAnimationFrame(drawStars);
         }
