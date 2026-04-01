@@ -8,22 +8,22 @@
 
 :root {
     /* IMPERIAL COLOR MATRIX v7.0 */
-    --text-start: #7d3cff;
-    --text-end: #a855f7;
-    --border-start: #ffffff;
-    --border-end: #7d3cff;
+    --text-start: #facc15;
+    --text-end: #f59e0b;
+    --border-start: #facc15;
+    --border-end: #000000;
     
     /* GLOW INFRASTRUCTURE */
-    --card-glow-start: #7d3cff;
-    --card-glow-end: #a855f7;
-    --border-glow-start: #7d3cff;
+    --card-glow-start: #facc1522;
+    --card-glow-end: #000000;
+    --border-glow-start: #facc15;
     
     --bg-glow-start: #000000;
     --bg-glow-end: #0a0a0a;
     
     /* UI TOKENS */
-    --accent-primary: #7d3cff;
-    --accent-glow: rgba(125, 60, 255, 0.45);
+    --accent-primary: #facc15;
+    --accent-glow: rgba(250, 204, 21, 0.45);
     --bg-master: #020202;
     --card-glass: rgba(12, 12, 12, 0.75);
     --border-luxe: rgba(255, 255, 255, 0.08);
@@ -246,9 +246,10 @@ body.sovereign-master {
     content: "";
     position: absolute;
     inset: -2px;
-    background: conic-gradient(from var(--border-angle), transparent 70%, var(--accent-primary) 100%);
+    /* Sharp LED Sweep - 5% width */
+    background: conic-gradient(from var(--border-angle), transparent 95%, var(--accent-primary) 100%);
     border-radius: 42px;
-    animation: borderSweep 2.5s linear infinite;
+    animation: borderSweep 2s linear infinite;
     z-index: -1;
     mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
     -webkit-mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
@@ -256,6 +257,7 @@ body.sovereign-master {
     -webkit-mask-composite: destination-out;
     padding: 2px;
     pointer-events: none;
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 @keyframes cardEntrance {
@@ -290,7 +292,7 @@ body.sovereign-master {
 .card-header-v7 { position: relative; border-radius: 40px 40px 0 0; }
 .banner-area-v7 { height: 170px; background: linear-gradient(135deg, var(--card-glow-start), var(--card-glow-end)); opacity: 0.15; border-radius: 40px 40px 0 0; overflow: hidden; }
 .avatar-wrap-v7 { position: absolute; bottom: -50px; left: 40px; width: 130px; height: 130px; z-index: 10; overflow: visible; }
-.profile-img-v7 { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--bg-master); object-fit: cover; box-shadow: 0 15px 45px rgba(0,0,0,0.6); background: radial-gradient(circle at 35% 35%, #a855f7, #7d3cff, #2e0066); transition: opacity 0.6s ease; }
+.profile-img-v7 { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--bg-master); object-fit: cover; box-shadow: 0 15px 45px rgba(0,0,0,0.6); background: radial-gradient(circle at 35% 35%, #facc15, #f59e0b, #000000); transition: opacity 0.6s ease; }
 /* Hide broken image icon when src is empty */
 .profile-img-v7:not([src]), .profile-img-v7[src=""] { color: transparent; }
 .status-indicator-v7 { position: absolute; bottom: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; border: 4px solid var(--bg-master); }

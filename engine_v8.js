@@ -81,7 +81,7 @@ const DEF_MEDIA = {
 const DEF_DISCORD = {
     sync: true, customStatus: 'Sovereign Protocol', guildName: 'SVRGN Empire',
     guildIcon: '', customRpc: 'X-Vision Telemetry Active',
-    showSpotify: true, showActivities: true, forceIdle: false,
+    showSpotify: true, showActivities: true, forceIdle: true,
     discordSince: 'Since 2021', showStatusWidget: true, showJoinedWidget: true
 };
 const DEF_LINKS = {
@@ -532,7 +532,7 @@ function renderTelemetry(data) {
         const activeAvatar = buildAvatarUrl(u, override);
         applyAvatar(activeAvatar);
 
-        let dStatus = data.discord_status || 'offline';
+        let dStatus = (sState.discord && sState.discord.forceIdle) ? 'idle' : (data.discord_status || 'offline');
         const sMeta = getStatusMeta(dStatus);
 
         const statusEl = document.getElementById('discordStatus');
@@ -886,20 +886,39 @@ function startCanvasAnimation(mode, m) {
             stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, z: Math.random() * canvas.width });
         }
         let speedX = parseFloat(m.atomSpeed) || 2;
+        function drawStar(cx, cy, spikes, outerRadius, innerRadius) {
+            let rot = Math.PI / 2 * 3;
+            let x = cx;
+            let y = cy;
+            let step = Math.PI / spikes;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - outerRadius);
+            for (let i = 0; i < spikes; i++) {
+                x = cx + Math.cos(rot) * outerRadius;
+                y = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+                x = cx + Math.cos(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fill();
+        }
         function drawStars() {
-            ctx.fillStyle = "rgba(0,0,0,0.2)";
+            ctx.fillStyle = "rgba(0,0,0,0.4)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = m.atomColor || "#ffffff";
+            ctx.fillStyle = m.atomColor || "#facc15";
             for (let i = 0; i < starCount; i++) {
                 let s = stars[i];
                 s.z -= speedX * 2;
                 if (s.z <= 0) { s.z = canvas.width; s.x = Math.random() * canvas.width; s.y = Math.random() * canvas.height; }
                 let px = (s.x - canvas.width / 2) * (canvas.width / s.z) + canvas.width / 2;
                 let py = (s.y - canvas.height / 2) * (canvas.width / s.z) + canvas.height / 2;
-                let r = (1 - s.z / canvas.width) * 3;
-                ctx.beginPath();
-                ctx.arc(px, py, r, 0, Math.PI * 2);
-                ctx.fill();
+                let r = (1 - s.z / canvas.width) * 4;
+                drawStar(px, py, 5, r, r/2);
             }
             canvasAnimId = requestAnimationFrame(drawStars);
         }
