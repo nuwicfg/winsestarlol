@@ -700,20 +700,35 @@ function setupStaticTilt() {
         if (!card || card._tiltBound) return;
         card._tiltBound = true;
         let ticking = false;
-        card.addEventListener('mousemove', e => {
+
+        window.addEventListener('mousemove', e => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     const r = card.getBoundingClientRect();
-                    const rx = ((e.clientY - r.top - r.height / 2) / (r.height / 2)) * -12;
-                    const ry = ((e.clientX - r.left - r.width / 2) / (r.width / 2)) * 12;
-                    card.style.transform = 'perspective(2000px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale3d(1.02,1.02,1.02)';
+                    const centerX = r.left + r.width / 2;
+                    const centerY = r.top + r.height / 2;
+                    
+                    // Calculate distance from card center to mouse
+                    const deltaX = e.clientX - centerX;
+                    const deltaY = e.clientY - centerY;
+                    
+                    // Limit the range or normalize it based on viewport if preferred
+                    // But here we'll use a relative scaling based on screen distance
+                    const rx = (deltaY / (window.innerHeight / 2)) * -10;
+                    const ry = (deltaX / (window.innerWidth / 2)) * 10;
+                    
+                    card.style.transform = `perspective(2000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
                     ticking = false;
                 });
                 ticking = true;
             }
         });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+
+        // Reset if mouse leaves window or idles
+        window.addEventListener('mouseout', (e) => {
+           if (!e.relatedTarget && !e.toElement) {
+              card.style.transform = 'perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+           }
         });
     } catch (e) { }
 }
