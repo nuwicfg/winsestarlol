@@ -62,9 +62,9 @@ const safeArr = (val, def) => {
 const DEF_COLORS = {
     name: ['#facc15', '#f59e0b'],
     border: ['#facc15', '#27272a'],
-    cardGlow: ['#000000', '#0a0a0a'],
+    cardGlow: ['#facc1522', '#000000'],
     borderGlow: ['#facc15', '#000000'],
-    bgGlow: ['#000000', '#050505'],
+    bgGlow: ['#facc1511', '#000000'],
     icons: ['#ffffff', '#9ca3af'],
     nameGlow: ['#facc15', '#f59e0b']
 };
