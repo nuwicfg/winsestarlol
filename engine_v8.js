@@ -90,7 +90,7 @@ const DEF_LINKS = {
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
-    badges: [],
+    badges: ['imperial-star'],
     typewriter: true,
     viewCounter: true
 };
@@ -452,16 +452,17 @@ function getStatusMeta(status) {
 function getBadgesHtml(badges) {
     if (!badges || badges.length === 0) return '';
     const badgeMap = {
-        'verified': { icon: 'fa-solid fa-check-circle', color: '#3b82f6' },
-        'premium': { icon: 'fa-solid fa-gem', color: '#10b981' },
-        'developer': { icon: 'fa-solid fa-code', color: '#8b5cf6' },
-        'supporter': { icon: 'fa-solid fa-heart', color: '#ef4444' },
-        'bot': { icon: 'fa-solid fa-robot', color: '#9ca3af' },
+        'imperial-star': { icon: 'assets/star.png', isImage: true, tip: 'Imperial Star' },
+        'verified': { icon: 'fa-solid fa-check-circle', color: '#facc15' },
+        'premium': { icon: 'fa-solid fa-gem', color: '#facc15' },
+        'developer': { icon: 'fa-solid fa-code', color: '#facc15' },
+        'supporter': { icon: 'fa-solid fa-heart', color: '#facc15' },
         'staff': { icon: 'fa-solid fa-shield-halved', color: '#f59e0b' }
     };
     return badges.map(b => {
         const bdg = badgeMap[b];
         if (!bdg) return '';
+        if (bdg.isImage) return `<img src="${bdg.icon}" style="width:12px; height:12px; object-fit:contain; vertical-align:middle; filter:drop-shadow(0 0 5px #facc1588);">`;
         return `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 11px;"></i>`;
     }).join(' ');
 }
@@ -769,6 +770,7 @@ function applyBadges(badges) {
 
     // DB
     const badgeMap = {
+        'imperial-star': { icon: 'assets/star.png', isImage: true, tip: 'Imperial Sovereign Star' },
         'verified': { icon: 'fa-solid fa-check-circle', tip: 'Verified Sovereign' },
         'premium': { icon: 'fa-solid fa-gem', tip: 'Premium Membership' },
         'nitro': { icon: 'fa-solid fa-bolt-lightning', tip: 'Nitro Sovereign' },
@@ -781,7 +783,11 @@ function applyBadges(badges) {
     badges.forEach(b => {
         const bdg = badgeMap[b];
         if (bdg) {
-            wrap.innerHTML += '<div class="badge-item" data-tooltip="' + bdg.tip + '"><i class="' + bdg.icon + '"></i></div>';
+            if (bdg.isImage) {
+                wrap.innerHTML += `<div class="badge-item" data-tooltip="${bdg.tip}"><img src="${bdg.icon}" style="width:16px; height:16px; object-fit:contain;"></div>`;
+            } else {
+                wrap.innerHTML += '<div class="badge-item" data-tooltip="' + bdg.tip + '"><i class="' + bdg.icon + '" style="color:' + (bdg.color || '#fff') + '"></i></div>';
+            }
         }
     });
 }

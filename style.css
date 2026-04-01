@@ -260,6 +260,33 @@ body.sovereign-master {
     box-shadow: 0 0 15px var(--accent-glow);
 }
 
+/* STAR AURA BACKGROUND ELEMENT */
+.star-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 480px;
+    background: url('assets/star.png') no-repeat center center;
+    background-size: contain;
+    z-index: -2;
+    opacity: 0.15;
+    filter: drop-shadow(0 0 40px var(--accent-primary)) brightness(1.2);
+    animation: starPulse 8s ease-in-out infinite, starRotate 40s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes starPulse {
+    0%, 100% { opacity: 0.12; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.22; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes starRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 @keyframes cardEntrance {
     from { opacity: 0; transform: translateY(60px) rotateX(15deg) scale(0.9); filter: blur(20px); }
     to { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); filter: blur(0); }
