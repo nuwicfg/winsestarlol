@@ -90,7 +90,7 @@ const DEF_LINKS = {
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
-    badges: ['verified', 'developer', 'premium', 'nitro'],
+    badges: [],
     typewriter: true,
     viewCounter: true
 };
@@ -495,14 +495,20 @@ function renderRealDiscordBadges(discordUser) {
     let html = '';
     
     if (hasNitro) {
-        // Multi-level nitro check
-        const nitroImg = "https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png";
+        // Discord Nitro
         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Discord Nitro">
-            <img src="${nitroImg}" style="width:16px; height:16px;">
+            <img src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png" style="width:16px; height:16px;">
         </div>`;
-        // Boost badge (Simulate with pink crystal icon or similar if no direct lanyard flag)
+        // Nitro Booster
         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Nitro Booster">
             <img src="https://cdn.discordapp.com/badge-icons/8a2382a430c0b71f92827ca6096130ee.png" style="width:16px; height:16px;">
+        </div>`;
+    }
+    
+    // Legacy Username Badge (Check for discriminator '0')
+    if (discordUser.discriminator === '0' || discordUser.discriminator === '#0' || (discordUser.global_name && !discordUser.discriminator)) {
+         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Legacy Username">
+            <img src="https://cdn.discordapp.com/badge-icons/6de6d3465076052744769ad033230eed.png" style="width:16px; height:16px;">
         </div>`;
     }
     
