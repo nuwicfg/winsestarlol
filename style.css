@@ -513,7 +513,7 @@ canvas.bg-v7 { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100
 
 /* BADGES v8.2 - Boxed style */
 .badges-v7 {
-    display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+    display: flex; flex-wrap: wrap; gap: 4px; border-radius: 8px; justify-content: center;
     margin-top: 0.5rem;
 }
 .badge-item {
@@ -523,7 +523,7 @@ canvas.bg-v7 { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100
     padding: 2px; border-radius: 6px;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: help;
-    width: 28px; height: 28px;
+    width: 26px; height: 26px;
     position: relative;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
