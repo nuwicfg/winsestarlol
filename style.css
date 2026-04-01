@@ -25,8 +25,8 @@
     --accent-primary: #facc15;
     --accent-glow: rgba(250, 204, 21, 0.45);
     --bg-master: #020202;
-    --card-glass: rgba(12, 12, 12, 0.4);
-    --border-luxe: rgba(255, 255, 255, 0.08);
+    --card-glass: rgba(12, 12, 12, 0.25);
+    --border-luxe: rgba(255, 255, 255, 0.15);
     
     --icon-start: #ffffff;
     --icon-end: #ffffff;
@@ -217,7 +217,7 @@ body.sovereign-master {
     width: 100%;
     max-width: 560px;
     background: var(--card-glass);
-    backdrop-filter: blur(40px); border: 1px solid var(--border-luxe);
+    backdrop-filter: blur(15px); border: 1px solid var(--border-luxe);
     border-radius: 40px; overflow: visible; position: relative;
     transform-style: preserve-3d;
     flex-shrink: 0;
@@ -268,11 +268,11 @@ body.sovereign-master {
     transform: translate(-50%, -50%);
     width: 480px;
     height: 480px;
-    background: url('assets/star.png') no-repeat center center;
+    background: url('./assets/star.png') no-repeat center center;
     background-size: contain;
-    z-index: -2;
-    opacity: 0.25;
-    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 10px var(--accent-primary)) brightness(1.4);
+    z-index: -5;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 10px #facc15) brightness(1.5);
     animation: starPulse 6s ease-in-out infinite, starRotate 30s linear infinite, starSlide 12s ease-in-out infinite alternate;
     pointer-events: none;
 }

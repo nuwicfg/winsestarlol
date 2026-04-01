@@ -353,7 +353,7 @@ function handleBgMatrix(m) {
                     particles: {
                         number: { value: parseInt(m.atomDensity) || 150 },
                         color: { value: m.atomColor || '#ffffff' },
-                        opacity: { value: 0.5 }, size: { value: 3 },
+                        opacity: { value: 0.5 }, size: { value: 1 },
                         line_linked: { enable: true, distance: 150, color: m.atomColor || '#ffffff', opacity: 0.3, width: 1 },
                         shape: { type: m.atomShape || 'circle' },
                         move: { enable: true, speed: parseFloat(m.atomSpeed) || 2 }
@@ -392,7 +392,7 @@ function renderSovereignSocial(links) {
     const socialColors = {
         discord: '#5865F2', github: '#ffffff', spotify: '#1DB954',
         tiktok: '#ff0050', instagram: '#E4405F', twitter: '#1DA1F2',
-        youtube: '#FF0000', steam: '#171a21', telegram: '#0088cc',
+        youtube: '#FF0000', steam: '#00216eff', telegram: '#0088cc',
         snapchat: '#FFFC00', soundcloud: '#ff8800', reddit: '#ff4500'
     };
     Object.keys(icons).forEach(k => {
@@ -452,7 +452,7 @@ function getStatusMeta(status) {
 function getBadgesHtml(badges) {
     if (!badges || badges.length === 0) return '';
     const badgeMap = {
-        'imperial-star': { icon: 'assets/star.png', isImage: true, tip: 'Imperial Star' },
+        'imperial-star': { icon: 'assets/star.png', isImage: true, tip: 'Winse Star' },
         'verified': { icon: 'fa-solid fa-check-circle', color: '#facc15' },
         'premium': { icon: 'fa-solid fa-gem', color: '#facc15' },
         'developer': { icon: 'fa-solid fa-code', color: '#facc15' },
@@ -485,16 +485,16 @@ const DISCORD_FLAGS = [
 function renderRealDiscordBadges(discordUser) {
     const el = document.getElementById('badgeContainer');
     if (!el) return;
-    
+
     // Clear dynamic portion of badges to avoid duplication
     const dynamicBadges = el.querySelectorAll('.discord-dynamic-badge');
     dynamicBadges.forEach(b => b.remove());
 
     const flags = discordUser.public_flags_v2 || discordUser.public_flags || 0;
     const hasNitro = discordUser.premium_type && discordUser.premium_type > 0;
-    
+
     let html = '';
-    
+
     if (hasNitro) {
         // Discord Nitro
         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Discord Nitro">
@@ -505,7 +505,7 @@ function renderRealDiscordBadges(discordUser) {
             <img src="https://cdn.discordapp.com/badge-icons/8a2382a430c0b71f92827ca6096130ee.png" style="width:16px; height:16px;">
         </div>`;
     }
-    
+
     DISCORD_FLAGS.forEach(b => {
         if ((flags & b.flag) !== 0) {
             html += `<div class="badge-item discord-dynamic-badge" data-tooltip="${b.label}">
@@ -513,7 +513,7 @@ function renderRealDiscordBadges(discordUser) {
             </div>`;
         }
     });
-    
+
     if (html) {
         el.insertAdjacentHTML('beforeend', html);
         el.classList.remove('hidden');
@@ -541,7 +541,7 @@ function renderTelemetry(data) {
 
         // Render real Discord badges from public_flags
         renderRealDiscordBadges(u);
-        
+
         // Render Discord Banner
         if (u.banner) {
             const bannerEl = document.getElementById('cardBanner');
@@ -552,7 +552,7 @@ function renderTelemetry(data) {
                 bannerEl.style.opacity = '1';
             }
         }
-        
+
         // Render guild widget from panel settings
         renderGuildWidget();
 
@@ -707,16 +707,16 @@ function setupStaticTilt() {
                     const r = card.getBoundingClientRect();
                     const centerX = r.left + r.width / 2;
                     const centerY = r.top + r.height / 2;
-                    
+
                     // Calculate distance from card center to mouse
                     const deltaX = e.clientX - centerX;
                     const deltaY = e.clientY - centerY;
-                    
+
                     // Limit the range or normalize it based on viewport if preferred
                     // But here we'll use a relative scaling based on screen distance
                     const rx = (deltaY / (window.innerHeight / 2)) * -10;
                     const ry = (deltaX / (window.innerWidth / 2)) * 10;
-                    
+
                     card.style.transform = `perspective(2000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
                     ticking = false;
                 });
@@ -726,9 +726,9 @@ function setupStaticTilt() {
 
         // Reset if mouse leaves window or idles
         window.addEventListener('mouseout', (e) => {
-           if (!e.relatedTarget && !e.toElement) {
-              card.style.transform = 'perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-           }
+            if (!e.relatedTarget && !e.toElement) {
+                card.style.transform = 'perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+            }
         });
     } catch (e) { }
 }
@@ -801,7 +801,7 @@ function applyViewCounter(enabled) {
         return;
     }
     vc.classList.remove('hidden');
-    
+
     // Imperial view engine - restore local storage counting (Force reset with new key)
     let views = parseInt(localStorage.getItem('svrgn_v8_views')) || 0;
     if (!vc._viewIncremented) {
@@ -924,7 +924,7 @@ function startCanvasAnimation(mode, m) {
                 let px = (s.x - canvas.width / 2) * (canvas.width / s.z) + canvas.width / 2;
                 let py = (s.y - canvas.height / 2) * (canvas.width / s.z) + canvas.height / 2;
                 let r = (1 - s.z / canvas.width) * 4;
-                drawStar(px, py, 5, r, r/2);
+                drawStar(px, py, 5, r, r / 2);
             }
             canvasAnimId = requestAnimationFrame(drawStars);
         }
