@@ -769,12 +769,12 @@ function applyViewCounter(enabled) {
     }
     vc.classList.remove('hidden');
     
-    // Imperial view engine - restore local storage counting
-    let views = parseInt(localStorage.getItem('svrgn_profileViewsCount')) || 0;
+    // Imperial view engine - restore local storage counting (Force reset with new key)
+    let views = parseInt(localStorage.getItem('svrgn_v8_views')) || 0;
     if (!vc._viewIncremented) {
         if (!window.location.href.includes('panel')) {
             views++;
-            localStorage.setItem('svrgn_profileViewsCount', views);
+            localStorage.setItem('svrgn_v8_views', views);
         }
         vc._viewIncremented = true;
     }
