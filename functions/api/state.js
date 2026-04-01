@@ -1,20 +1,22 @@
 export async function onRequestGet(context) {
     try {
         const stateStr = await context.env.SVRGN_DB.get('globalState');
+        const defaultHeaders = { 
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            'Expires': '0',
+            'Surrogate-Control': 'no-store',
+            'Access-Control-Allow-Origin': '*'
+        };
+        
         if (!stateStr) {
-            return new Response(JSON.stringify({}), { 
-                status: 200, 
-                headers: { 'Content-Type': 'application/json' } 
-            });
+            return new Response(JSON.stringify({}), { status: 200, headers: defaultHeaders });
         }
-        return new Response(stateStr, { 
-            status: 200, 
-            headers: { 'Content-Type': 'application/json' } 
-        });
+        return new Response(stateStr, { status: 200, headers: defaultHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), { 
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
         });
     }
 }
