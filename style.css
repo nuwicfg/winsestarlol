@@ -511,31 +511,3 @@ canvas.bg-v7 { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100
     pointer-events: none; z-index: 5;
 }
 
-/* BADGES v8.2 - Boxed style */
-.badges-v7 {
-    display: flex; flex-wrap: wrap; gap: 4px; border-radius: 8px; justify-content: center;
-    margin-top: 0.5rem;
-}
-.badge-item {
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2px; border-radius: 6px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: help;
-    width: 26px; height: 26px;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-.badge-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #facc15;
-    box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
-    transform: translateY(-2px);
-}
-.badge-item img {
-    width: 18px; height: 18px; object-fit: contain;
-}
-.badge-item i {
-    font-size: 14px;
-}

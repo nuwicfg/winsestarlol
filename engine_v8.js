@@ -90,7 +90,7 @@ const DEF_LINKS = {
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
-    badges: ['hypesquad_bravery', 'nitro', 'booster', 'early_supporter', 'active_dev', 'legacy_user'],
+    badges: [],
     typewriter: true,
     viewCounter: true
 };
@@ -457,25 +457,13 @@ function getBadgesHtml(badges) {
         'developer': { icon: 'fa-solid fa-code', color: '#8b5cf6' },
         'supporter': { icon: 'fa-solid fa-heart', color: '#ef4444' },
         'bot': { icon: 'fa-solid fa-robot', color: '#9ca3af' },
-        'staff': { icon: 'fa-solid fa-shield-halved', color: '#f59e0b' },
-        'hypesquad_bravery': { img: 'https://cdn.discordapp.com/badge-icons/8a88d63823d8a71cd5e390baa45afe70.png', tip: 'HypeSquad Bravery' },
-        'nitro': { img: 'https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png', tip: 'Discord Nitro' },
-        'booster': { img: 'https://cdn.discordapp.com/badge-icons/8a2382a430c0b71f92827ca6096130ee.png', tip: 'Nitro Booster' },
-        'early_supporter': { img: 'https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png', tip: 'Early Supporter' },
-        'active_dev': { img: 'https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png', tip: 'Active Developer' },
-        'legacy_user': { img: 'https://raw.githubusercontent.com/yofreke/discord-badges/main/badges/legacy_username.png', tip: 'Originally Known As' }
+        'staff': { icon: 'fa-solid fa-shield-halved', color: '#f59e0b' }
     };
     return badges.map(b => {
         const bdg = badgeMap[b];
         if (!bdg) return '';
-        const content = bdg.img 
-            ? `<img src="${bdg.img}" style="width:18px; height:18px;">`
-            : `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 14px;"></i>`;
-        
-        if (!content) return ''; // Double safety
-
-        return `<div class="badge-item static-badge" data-tooltip="${bdg.tip}">${content}</div>`;
-    }).join('');
+        return `<i class="${bdg.icon}" style="color: ${bdg.color}; font-size: 11px;"></i>`;
+    }).join(' ');
 }
 
 // Real Discord badges from public_flags bitmask (Lanyard API)
@@ -517,13 +505,6 @@ function renderRealDiscordBadges(discordUser) {
         </div>`;
     }
     
-    // Legacy Username Badge (Check for discriminator '0')
-    if (discordUser.discriminator === '0' || discordUser.discriminator === '#0' || (discordUser.global_name && !discordUser.discriminator)) {
-         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Legacy Username">
-            <img src="https://raw.githubusercontent.com/yofreke/discord-badges/main/badges/legacy_username.png" style="width:18px; height:18px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));">
-        </div>`;
-    }
-    
     DISCORD_FLAGS.forEach(b => {
         if ((flags & b.flag) !== 0) {
             html += `<div class="badge-item discord-dynamic-badge" data-tooltip="${b.label}">
@@ -557,8 +538,8 @@ function renderTelemetry(data) {
         const statusEl = document.getElementById('discordStatus');
         if (statusEl) statusEl.style.background = sMeta.color;
 
-        // Force disable dynamic lanyard badges to prevent empty/duplicate boxes
-        // renderRealDiscordBadges(u); 
+        // Render real Discord badges from public_flags
+        renderRealDiscordBadges(u);
         
         // Render Discord Banner
         if (u.banner) {
@@ -779,19 +760,30 @@ function applyTypewriter(el, text) {
 function applyBadges(badges) {
     const wrap = document.getElementById('badgeContainer');
     if (!wrap) return;
-    
-    // Clear old static items
-    const staticItems = wrap.querySelectorAll('.badge-item.static-badge');
-    staticItems.forEach(b => b.remove());
-
     if (!badges || badges.length === 0) {
-        if (wrap.innerHTML.trim() === '') wrap.classList.add('hidden');
+        wrap.classList.add('hidden');
+        wrap.innerHTML = '';
         return;
     }
-    
     wrap.classList.remove('hidden');
-    const html = getBadgesHtml(badges);
-    wrap.insertAdjacentHTML('afterbegin', html);
+
+    // DB
+    const badgeMap = {
+        'verified': { icon: 'fa-solid fa-check-circle', tip: 'Verified Sovereign' },
+        'premium': { icon: 'fa-solid fa-gem', tip: 'Premium Membership' },
+        'nitro': { icon: 'fa-solid fa-bolt-lightning', tip: 'Nitro Sovereign' },
+        'developer': { icon: 'fa-solid fa-code', tip: 'System Architect' },
+        'supporter': { icon: 'fa-solid fa-heart', tip: 'Early Supporter' },
+        'staff': { icon: 'fa-solid fa-shield-halved', tip: 'Sovereign Staff' }
+    };
+
+    wrap.innerHTML = '';
+    badges.forEach(b => {
+        const bdg = badgeMap[b];
+        if (bdg) {
+            wrap.innerHTML += '<div class="badge-item" data-tooltip="' + bdg.tip + '"><i class="' + bdg.icon + '"></i></div>';
+        }
+    });
 }
 
 // Views Counter
