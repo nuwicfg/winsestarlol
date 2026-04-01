@@ -114,7 +114,7 @@ let rawState = {
     discordId: safeGet('discordId', config.discordId) || config.discordId,
     siteTitle: safeGet('siteTitle', 'winse | SOVEREIGN') || 'winse | SOVEREIGN',
     bio: safeGet('bio', '// initializing imperial protocol...') || '// initializing imperial protocol...',
-    splashTitle: safeGet('splashTitle', 'S O V E R E I G N') || 'S O V E R E I G N',
+    splashTitle: safeGet('splashTitle', 'W I N S E') || 'W I N S E',
     splashStatusText: safeGet('statusText', '// TERMINAL INITIALIZING...') || '// TERMINAL INITIALIZING...',
     splashBtnText: safeGet('splashBtnText', 'ENTER SYSTEM') || 'ENTER SYSTEM',
     colors: safeGet('colors', DEF_COLORS),
@@ -178,17 +178,8 @@ function runv4Migration() {
 async function bootX() {
     runv4Migration();
     try { syncBridge = new BroadcastChannel(config.syncChannel); } catch (e) { }
-    
-    // Fetch global state from KV
-    try {
-        const res = await fetch('/api/state');
-        if (res.ok) {
-            const data = await res.json();
-            if (data && Object.keys(data).length > 0 && !data.error) {
-                sState = deepMerge(sState, data);
-            }
-        }
-    } catch(e) { console.warn('[Sovereign] Remote state fetch warning:', e); }
+
+    // No remote fetching; running purely static.
 
     applySovereignState(sState);
     setupAtomicRadar();
