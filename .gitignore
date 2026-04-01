@@ -1,0 +1,9 @@
+node_modules
+.wrangler
+.github
+.git
+vercel.json
+.htaccess
+winseamınakoyayım.rar
+_redirects
+package-lock.json

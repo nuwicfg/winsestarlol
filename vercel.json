@@ -5,11 +5,5 @@
       "destination": "/panel/",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/panel/(.*)",
-      "destination": "/panel/$1"
-    }
   ]
 }

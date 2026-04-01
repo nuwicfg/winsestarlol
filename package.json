@@ -1,0 +1,12 @@
+{
+  "name": "winsestar-v7",
+  "version": "7.5.0",
+  "private": true,
+  "scripts": {
+    "login": "npx wrangler login",
+    "deploy": "npx wrangler pages deploy . --project-name=winsestar"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
