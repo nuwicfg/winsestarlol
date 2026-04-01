@@ -175,9 +175,21 @@ function runv4Migration() {
     }
 }
 
-function bootX() {
+async function bootX() {
     runv4Migration();
     try { syncBridge = new BroadcastChannel(config.syncChannel); } catch (e) { }
+    
+    // Fetch global state from KV
+    try {
+        const res = await fetch('/api/state');
+        if (res.ok) {
+            const data = await res.json();
+            if (data && Object.keys(data).length > 0 && !data.error) {
+                sState = deepMerge(sState, data);
+            }
+        }
+    } catch(e) { console.warn('[Sovereign] Remote state fetch warning:', e); }
+
     applySovereignState(sState);
     setupAtomicRadar();
     preloadAvatar();

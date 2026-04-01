@@ -5,3 +5,7 @@ pages_build_output_dir = "."
 
 [observability]
 enabled = true
+
+[[kv_namespaces]]
+binding = "SVRGN_DB"
+id = "7d23d163a70f458fa1e07212f05855fb"

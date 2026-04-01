@@ -135,8 +135,21 @@ let state = loadState();
 // ============================================================
 // 3. BOOT
 // ============================================================
-function bootPanel() {
+async function bootPanel() {
     try { imperialBridge = new BroadcastChannel(SYNC_CH); } catch (e) { }
+    
+    // Fetch remote state
+    try {
+        logTerminal('Sunucudan global veriler çekiliyor...');
+        const res = await fetch('/api/state');
+        if (res.ok) {
+            const data = await res.json();
+            if (data && Object.keys(data).length > 0 && !data.error) {
+                state = deepMerge(state, data);
+            }
+        }
+    } catch(e) { logTerminal('Bağlantı hatası, yerel veriler kullanılıyor.'); }
+
     fillUI();
     logTerminal('X-VISION G9 Kernel Initialized. System Ready.');
 }
@@ -315,9 +328,32 @@ function handleChange(id, val, checked) {
 // ============================================================
 // 6. SAVE & SEAL
 // ============================================================
-function sealProtocol() {
+async function sealProtocol() {
     try {
+        const pwd = prompt("Siteyi kaydetmek için Admin Şifresi girin (örn: winserules123):");
+        if (!pwd) {
+            logTerminal('İşlem iptal edildi.');
+            return;
+        }
+
         Object.keys(state).forEach(k => safeSave(k, state[k]));
+        
+        logTerminal('Cloudflare KV sunucusuna veriler gönderiliyor...');
+        const payload = Object.assign({}, state, { adminPassword: pwd });
+
+        const res = await fetch('/api/state', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        
+        const resData = await res.json();
+        
+        if (!res.ok || resData.error) {
+            logTerminal('HATA: ' + (resData.error || 'Yetkisizlik / Şifre yanlış!'));
+            return;
+        }
+
         if (imperialBridge) imperialBridge.postMessage(state);
         notifyPreview();
 
@@ -328,7 +364,7 @@ function sealProtocol() {
             btn.style.background = '#22c55e';
             setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 2500);
         }
-        logTerminal('Protokol mühürlendi. State senkronize edildi.');
+        logTerminal('Protokol mühürlendi. Global State senkronize edildi.');
     } catch (e) { logTerminal('HATA: ' + e.message); }
 }
 
