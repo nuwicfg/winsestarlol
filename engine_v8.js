@@ -541,6 +541,18 @@ function renderTelemetry(data) {
 
         // Render real Discord badges from public_flags
         renderRealDiscordBadges(u);
+        
+        // Render Discord Banner
+        if (u.banner) {
+            const bannerEl = document.getElementById('cardBanner');
+            if (bannerEl) {
+                const ext = u.banner.startsWith('a_') ? 'gif' : 'png';
+                const bannerUrl = `https://cdn.discordapp.com/banners/${u.id}/${u.banner}.${ext}?size=1024`;
+                bannerEl.style.background = `url(${bannerUrl}) center/cover no-repeat`;
+                bannerEl.style.opacity = '1';
+            }
+        }
+        
         // Render guild widget from panel settings
         renderGuildWidget();
 
