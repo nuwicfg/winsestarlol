@@ -113,7 +113,7 @@ function deepMerge(def, user) {
 let sState = {
     discordId: config.discordId || '1158363483256147978',
     siteTitle: 'winse | SOVEREIGN',
-    bio: '// initializing imperial protocol...',
+    bio: 'MR <3',
     splashTitle: 'W I N S E',
     splashStatusText: '// TERMINAL INITIALIZING...',
     splashBtnText: 'ENTER SYSTEM',
@@ -494,8 +494,14 @@ function renderRealDiscordBadges(discordUser) {
     let html = '';
     
     if (hasNitro) {
+        // Multi-level nitro check
+        const nitroImg = "https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png";
         html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Discord Nitro">
-            <img src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png" style="width:16px; height:16px;">
+            <img src="${nitroImg}" style="width:16px; height:16px;">
+        </div>`;
+        // Boost badge (Simulate with pink crystal icon or similar if no direct lanyard flag)
+        html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Nitro Booster">
+            <img src="https://cdn.discordapp.com/badge-icons/8a2382a430c0b71f92827ca6096130ee.png" style="width:16px; height:16px;">
         </div>`;
     }
     
@@ -762,9 +768,18 @@ function applyViewCounter(enabled) {
         return;
     }
     vc.classList.remove('hidden');
-    // Hard-reset to zero by Imperial Protocol
+    
+    // Imperial view engine - restore local storage counting
+    let views = parseInt(localStorage.getItem('svrgn_profileViewsCount')) || 0;
+    if (!vc._viewIncremented) {
+        if (!window.location.href.includes('panel')) {
+            views++;
+            localStorage.setItem('svrgn_profileViewsCount', views);
+        }
+        vc._viewIncremented = true;
+    }
     const valEl = document.getElementById('viewCountVal');
-    if (valEl) valEl.textContent = '0';
+    if (valEl) valEl.textContent = views.toLocaleString();
 }
 
 // Canvas FX
