@@ -491,3 +491,23 @@ body.sovereign-master {
 
 canvas.bg-v7 { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100vh; pointer-events: none; }
 
+/* IMPERIAL HEARTBEAT v8.2 */
+@keyframes avatarPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 15px var(--accent-glow); }
+    50% { transform: scale(1.05); box-shadow: 0 0 45px var(--accent-primary); }
+}
+
+/* CARD SHIMMER */
+@keyframes cardShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.profile-card-v7::after {
+    content: ""; position: absolute; inset: -1px; border-radius: 40px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background-size: 200% 100%;
+    animation: cardShimmer 6s linear infinite;
+    pointer-events: none; z-index: 5;
+}
+

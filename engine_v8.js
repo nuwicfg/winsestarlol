@@ -75,7 +75,7 @@ const DEF_EFFECTS = {
 };
 const DEF_MEDIA = {
     bgMode: 'stars', videoUrl: '', cursorUrl: '', audioUrl: '',
-    avatarOverride: '', atomSpeed: 1.5, atomDensity: 180,
+    avatarOverride: '', atomSpeed: 2.2, atomDensity: 400,
     atomColor: '#facc15', atomShape: 'circle', bannerUrl: ''
 };
 const DEF_DISCORD = {
@@ -90,7 +90,7 @@ const DEF_LINKS = {
     telegram: '', snapchat: '', soundcloud: '', reddit: ''
 };
 const DEF_FEATURES = {
-    badges: ['verified', 'developer', 'premium'],
+    badges: ['verified', 'developer', 'premium', 'nitro'],
     typewriter: true,
     viewCounter: true
 };
@@ -199,7 +199,8 @@ function applyAvatar(url) {
         };
         el.src = url;
         console.log('Avatar set for', id, '=>', url);
-        // Make sure it's visible if it was hidden
+        // Add Imperial Heartbeat Pulse
+        el.style.animation = 'avatarPulse 2s ease-in-out infinite';
         el.style.opacity = '1';
     });
 }
@@ -744,9 +745,9 @@ function applyBadges(badges) {
     const badgeMap = {
         'verified': { icon: 'fa-solid fa-check-circle', tip: 'Verified Sovereign' },
         'premium': { icon: 'fa-solid fa-gem', tip: 'Premium Membership' },
+        'nitro': { icon: 'fa-solid fa-bolt-lightning', tip: 'Nitro Sovereign' },
         'developer': { icon: 'fa-solid fa-code', tip: 'System Architect' },
         'supporter': { icon: 'fa-solid fa-heart', tip: 'Early Supporter' },
-        'bot': { icon: 'fa-solid fa-robot', tip: 'Automated Agent' },
         'staff': { icon: 'fa-solid fa-shield-halved', tip: 'Sovereign Staff' }
     };
 
