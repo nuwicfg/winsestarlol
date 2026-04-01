@@ -388,9 +388,18 @@ function renderSovereignSocial(links) {
         youtube: 'fa-youtube', steam: 'fa-steam', telegram: 'fa-telegram',
         snapchat: 'fa-snapchat', soundcloud: 'fa-soundcloud', reddit: 'fa-reddit-alien'
     };
+    const socialColors = {
+        discord: '#5865F2', github: '#ffffff', spotify: '#1DB954',
+        tiktok: '#ff0050', instagram: '#E4405F', twitter: '#1DA1F2',
+        youtube: '#FF0000', steam: '#171a21', telegram: '#0088cc',
+        snapchat: '#FFFC00', soundcloud: '#ff8800', reddit: '#ff4500'
+    };
     Object.keys(icons).forEach(k => {
         if (links[k]) {
-            grid.innerHTML += '<a href="' + links[k] + '" target="_blank" class="social-item"><i class="fa-brands ' + icons[k] + '"></i></a>';
+            const color = socialColors[k] || '#fff';
+            grid.innerHTML += `<a href="${links[k]}" target="_blank" class="social-item" style="color: ${color}; border-color: ${color}44; box-shadow: 0 0 15px ${color}22;">
+                <i class="fa-brands ${icons[k]}" style="filter: drop-shadow(0 0 8px ${color}88);"></i>
+            </a>`;
         }
     });
 }
@@ -472,47 +481,41 @@ const DISCORD_FLAGS = [
 ];
 
 function renderRealDiscordBadges(discordUser) {
-    const el = document.getElementById('discordBadgesRow');
+    const el = document.getElementById('badgeContainer');
     if (!el) return;
-    // Lanyard may provide public_flags or public_flags_v2
+    
+    // Clear dynamic portion of badges to avoid duplication
+    const dynamicBadges = el.querySelectorAll('.discord-dynamic-badge');
+    dynamicBadges.forEach(b => b.remove());
+
     const flags = discordUser.public_flags_v2 || discordUser.public_flags || 0;
-    // Nitro: check premium_type (1 = Nitro Classic, 2 = Nitro, 3 = Nitro Basic)
     const hasNitro = discordUser.premium_type && discordUser.premium_type > 0;
+    
     let html = '';
+    
     if (hasNitro) {
-        html += `<span class="d-badge"><img src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png" alt="Nitro"> Nitro</span>`;
+        html += `<div class="badge-item discord-dynamic-badge" data-tooltip="Discord Nitro">
+            <img src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png" style="width:16px; height:16px;">
+        </div>`;
     }
+    
     DISCORD_FLAGS.forEach(b => {
-        // Use bitwise AND with BigInt-safe check
         if ((flags & b.flag) !== 0) {
-            html += `<span class="d-badge"><img src="${b.img}" alt="${b.label}"> ${b.label}</span>`;
+            html += `<div class="badge-item discord-dynamic-badge" data-tooltip="${b.label}">
+                <img src="${b.img}" style="width:16px; height:16px;">
+            </div>`;
         }
     });
+    
     if (html) {
-        el.innerHTML = html;
+        el.insertAdjacentHTML('beforeend', html);
         el.classList.remove('hidden');
-    } else {
-        el.classList.add('hidden');
     }
 }
 
 function renderGuildWidget() {
     const el = document.getElementById('guildWidget');
-    if (!el) return;
-    const d = sState.discord || DEF_DISCORD;
-    const name = d.guildName;
-    const icon = d.guildIcon;
-    if (!name) { el.classList.add('hidden'); return; }
-    const iconHtml = icon
-        ? `<img src="${icon}" class="guild-icon" alt="${name}">`
-        : `<div class="guild-icon-placeholder">${name.charAt(0).toUpperCase()}</div>`;
-    el.innerHTML = `
-        ${iconHtml}
-        <div class="guild-info">
-            <span class="guild-label"><i class="fa-brands fa-discord"></i> SUNUCU</span>
-            <span class="guild-name">${name}</span>
-        </div>`;
-    el.classList.remove('hidden');
+    if (el) el.classList.add('hidden'); // Force disabled by Imperial Protocol
 }
 
 function renderTelemetry(data) {
@@ -759,16 +762,9 @@ function applyViewCounter(enabled) {
         return;
     }
     vc.classList.remove('hidden');
-    let views = safeGet('profileViewsCount', 1337);
-    if (!vc._viewIncremented) {
-        if (!window.location.href.includes('panel')) {
-            views++;
-            try { localStorage.setItem('svrgn_profileViewsCount', views); } catch (e) { }
-        }
-        vc._viewIncremented = true;
-    }
+    // Hard-reset to zero by Imperial Protocol
     const valEl = document.getElementById('viewCountVal');
-    if (valEl) valEl.textContent = views.toLocaleString();
+    if (valEl) valEl.textContent = '0';
 }
 
 // Canvas FX
