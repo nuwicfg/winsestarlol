@@ -572,3 +572,175 @@ canvas.bg-v7 { position: fixed; inset: 0; z-index: -2; width: 100vw; height: 100
     pointer-events: none; z-index: 5;
 }
 
+/* =========================================
+   INFO PAGE & DOSSIER v7.0 
+   ========================================= */
+
+.info-btn-wrap {
+    cursor: pointer;
+    transition: 0.3s var(--ease-v7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.info-icon-v7 {
+    font-size: 1.1rem;
+    color: var(--accent-primary);
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+    transition: 0.3s var(--ease-v7);
+}
+
+.info-btn-wrap:hover .info-icon-v7 {
+    transform: scale(1.2) rotate(15deg);
+    filter: drop-shadow(0 0 15px var(--accent-primary));
+}
+
+/* Dossier Layout for Info Page */
+.dossier-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 100;
+}
+
+.dossier-card {
+    background: rgba(5, 5, 5, 0.4);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(250, 204, 21, 0.2);
+    border-radius: 40px;
+    padding: 4rem;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.9), 0 0 40px rgba(250, 204, 21, 0.05);
+    animation: dossierEntrance 1.2s var(--ease-v7) backwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.dossier-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+@keyframes dossierEntrance {
+    from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(20px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.dossier-header {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.dossier-title-group h1 {
+    font-family: 'Orbitron';
+    font-size: 2.5rem;
+    color: #fff;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.dossier-subtitle {
+    font-family: 'Roboto Mono';
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    letter-spacing: 4px;
+    opacity: 0.8;
+}
+
+.dossier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.dossier-section {
+    margin-bottom: 2.5rem;
+}
+
+.dossier-label {
+    font-family: 'Orbitron';
+    font-size: 0.7rem;
+    color: var(--accent-primary);
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dossier-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(250, 204, 21, 0.1);
+}
+
+.dossier-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+}
+
+.dossier-content b {
+    color: #fff;
+    font-weight: 800;
+}
+
+.back-btn {
+    margin-top: 4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 1.2rem 3rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    color: #fff;
+    font-family: 'Orbitron';
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-decoration: none;
+    transition: 0.4s var(--ease-v7);
+}
+
+.back-btn:hover {
+    background: rgba(250, 204, 21, 0.05);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 30px var(--accent-glow);
+    transform: translateX(-10px);
+}
+
+/* Status Pulse for Info */
+.status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid #22c55e44;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-family: 'Roboto Mono';
+    color: #22c55e;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .dossier-grid { grid-template-columns: 1fr; }
+    .dossier-card { padding: 2rem; }
+    .dossier-title-group h1 { font-size: 1.8rem; }
+}
+
+
